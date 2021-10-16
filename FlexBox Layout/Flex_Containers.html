@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Flex Containers</title>
+	<style>
+		body {
+			font-family:  Verdana;
+			counter-reset: section;
+			font-size: 15px;
+			padding: 15px;
+		}
+		h1 {
+			counter-reset: subsection;
+			text-decoration: underline;
+		}
+		h1::before {
+			counter-increment: section;
+			content: counter(section) ". ";
+		}
+		h2::before{
+			counter-increment: subsection;
+			content:  counter(section) "." counter(subsection)" ";
+		}
+		hr {
+			height:  0.5px;
+			color: #f0f0f0;
+		}
+		p {
+			padding left: 15px;
+		}
+		span,pre {
+			color: gray;
+		}
+
+		.flex-container {
+			display:  flex;
+			background-color: dodgerblue;
+		}
+		.flex-container > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			padding: 20px;
+		  font-size: 30px;
+		}
+
+		.flex-container_A{
+			background-color: dodgerblue;
+			display: flex;
+		}
+		.flex-container_A > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.flex-container_B {
+			background-color: dodgerblue;
+			display: flex;
+			flex-direction: column;
+		}
+		.flex-container_B > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.flex-container_C {
+			background-color: dodgerblue;
+			display:  flex;
+			flex-direction: column-reverse;
+		}
+		.flex-container_C > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.flex-container_D {
+			background-color: dodgerblue;
+			display: flex;
+			flex-direction: row;
+		}
+
+		.flex-container_D > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.flex-container_E {
+			background-color: dodgerblue;
+			display: flex;
+			flex-direction: row-reverse;
+		}
+		.flex-container_E > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.flex-wrap_A {
+			background-color: dodgerblue;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.flex-wrap_A > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 20px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.flex-flow_A {
+			background-color: dodgerblue;
+			display: flex;
+			flex-flow: row wrap;
+		}
+		.flex-flow_A > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.justify-content_A {
+			background-color: dodgerblue;
+			display: flex;
+			justify-content: center;			
+		}
+		.justify-content_A > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 55px;
+			width: 100px;
+			text-align:  center;
+		}
+
+		.align-items_A {
+			background-color: dodgerblue;
+			display: flex;
+			align-items: center;
+			height: 200px;
+		}
+		.align-items_A > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 75px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.align-content_A {
+			background-color: dodgerblue;
+			display: flex;
+			height: 600px;
+			flex-wrap: wrap;
+			align-content: space-between;
+			background-color: dodgerblue;
+		}
+		.align-content_A > div {
+			background-color: #f1f1f1;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 75px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.perfect-centering {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 300px;
+			background-color: dodgerblue;
+		}
+		.perfect-centering > div {
+			background-color: #f1f1f1;
+			color: white;
+			width: 100px;
+			height: 100px;
+		}
+
+		.flex-basis_A {
+			background-color: #f1f1f1;
+			display:  flex;
+			align-items: strech;
+		}
+		.flex-basis_A > div {
+			background-color: dodgerblue;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 75px;
+			width: 100px;
+			color: white;
+			text-align: center;
+		}
+
+		.flex-property_A {
+			display: flex;
+			/*align-items: strech;*/
+			background-color: #f1f1f1;
+		}
+		.flex-property_A > div {
+			background-color: dodgerblue;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 75px;
+			width: 100px;
+			text-align: center;
+		}
+
+		.align-self_A {
+			background-color: #f1f1f1;
+			display: flex;
+			height: 200px;
+		}
+		.align-self_A > div {
+			background-color: dodgerblue;
+			color: white;
+			margin: 10px;
+			font-size: 30px;
+			line-height: 75px;
+			width: 100px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>Create a Flex Container</h1>
+	<h2>Parent Element (Container)</h2>
+	<p>This is a <b>flex container</b> with three <b>flex items</b>.</p>
+	<div class="flex-container">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+	<p>A Flexible layout - musta have a PARENT ELEMENT with the <i>display property</i> set to <i>flex</i>.<br>
+	Direct child elements of the flexible container automatically becomes flexible items.</p>
+
+	<h2>Flex-container (A)</h2>
+	<p>The flex container becomes <i>flexible</i> by setting the <span>display</span> property to <span>flex</span>:</p>
+	<div class="flex-container_A">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<h2>The "flex-direction" proeprty (B)</h2>
+	<p>The <span>flex-direction</span> PROPERTY, defines WHICH direction the container wants to STACK in the flex items.</p>
+		<div class="flex-container_B">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<h2>The "flex-direction" property (C)</h2>
+	<p>The <span>flex-direction: column reverse;</span> VALUE, STACKS the flex items vertically from BOTTOM to TOP:</p>
+		<div class="flex-container_C">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<h2>The "flex-direction" property (D)</h2>
+	<p>The <span>flex-direction: row;</span> VALUE, STACKS the flex items HORIZONTALLY from RIGHT to LEFT:</p>
+		<div class="flex-container_D">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<h2>The "flex-direction" property (E)</h2>
+	<p>The <span>flex-direction: row-reverse;</span> VALUE, STACKS the flex items HORIZONTALLY from LEFT to RIGHT:</p>
+		<div class="flex-container_E">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<h1>The "flex-wrap" property</h1>
+	<p>The <span>flex-wrap</span> PROPERTY, specifies when the flex-items should WRAP or NOT.</p>
+	<div class="flex-wrap_A">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+		<div>11</div>
+		<div>12</div>
+	</div>
+	<pre>
+		.flex-container {
+  		display: flex;
+  		<mark>flex-wrap: wrap;</mark>
+		}
+
+		.flex-container {
+  		display: flex;
+  		<mark>flex-wrap: nowrap;</mark>
+		}
+		
+		.flex-container {
+  		display: flex;
+  		<mark>flex-wrap: wrap-reverse;</mark>
+		}
+	</pre>
+
+	<h1>The "flex-flow" property</h1>
+	<p>The <span>flex-flow</span> property is a SHORTHAND property for SETTING BOTH the <span>flex-direction</span> and <span>flex-wrap</span> properties.</p>
+	<pre>
+		.flex-container {
+ 		 	display: flex;
+  		<mark>flex-flow: row wrap;</mark>
+		}
+	</pre>
+	<div class="flex-flow_A">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+		<div>11</div>
+		<div>12</div>
+	</div>
+
+	<h1>The "justify-content" property</h1>
+	<p>The <span>align-item: center;</span>, ALIGNS the flex item in the MIDDLE in the CONTAINER.</p>
+	<div class="justify-content_A">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+	<pre>
+		The center value aligns the flex items at the center of the container:
+		.flex-container {
+  		display: flex;
+  		<mark>justify-content: center;</mark>
+		}
+
+		The flex-start value aligns the flex items at the beginning of the container (this is default):
+		.flex-container {
+		  display: flex;
+		  <mark>justify-content: flex-start;</mark>
+		}
+
+		The flex-end value aligns the flex items at the end of the container:
+		.flex-container {
+		  display: flex;
+		  <mark>justify-content: flex-end;</mark>
+		}
+
+		The space-around value displays the flex items with space before, between, and after the lines:
+		.flex-container {
+		  display: flex;
+		  <mark>justify-content: space-around;</mark>
+		}
+
+		The space-between value displays the flex items with space between the lines:
+		.flex-container {
+		  display: flex;
+		  <mark>justify-content: space-between;</mark>
+		}
+	</pre>
+
+	<h1>The "align-itemS" property</h1>
+	<p>The <span>align-items</span> property is used to align the flex items.</p>
+		<div class="align-items_A">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<pre>
+		The center value aligns the flex items in the middle of the container:
+		.flex-container {
+		  display: flex;
+		  height: 200px;
+		  <mark>align-items: center;</mark>
+
+		The flex-start value aligns the flex items at the top of the container:
+		.flex-container {
+		  display: flex;
+		  height: 200px;
+		  <mark>align-items: flex-start;</mark>
+		}
+
+		The stretch value stretches the flex items to fill the container (this is default):
+		.flex-container {
+		  display: flex;
+		  height: 200px;
+		  <mark>align-items: stretch;</mark>
+		}
+
+		The baseline value aligns the flex items such as their baselines aligns:
+		.flex-container {
+		  display: flex;
+		  height: 200px;
+		  <mark>align-items: baseline;</mark>
+		}
+	</pre>
+
+	<h1>The "align-content" Property</h1>
+	<p>The <span>align-content</span> PROPERTY, is used to align the flex LINES.</p>
+	<h2>The "align-content" Property</h2>
+	<p>The <span>align-content: space-between;</span> displays the flex lines with equal space between them:</p>
+	<div class="align-content_A">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+		<div>11</div>
+		<div>12</div>
+	</div>
+
+	<pre>
+		The space-around value displays the flex lines with space before, between, and after them:
+		.flex-container {
+		  display: flex;
+		  height: 600px;
+		  flex-wrap: wrap;
+		  align-content: space-around;
+		}
+
+		The stretch value stretches the flex lines to take up the remaining space (this is default):
+		.flex-container {
+		  display: flex;
+		  height: 600px;
+		  flex-wrap: wrap;
+		  align-content: stretch;
+		}
+
+		The center value displays display the flex lines in the middle of the container:
+		.flex-container {
+		  display: flex;
+		  height: 600px;
+		  flex-wrap: wrap;
+		  align-content: center;
+		}
+
+		The flex-start value displays the flex lines at the start of the container:
+		.flex-container {
+		  display: flex;
+		  height: 600px;
+		  flex-wrap: wrap;
+		  align-content: flex-start;
+		}
+
+		The flex-end value displays the flex lines at the end of the container: 
+		.flex-container {
+		  display: flex;
+		  height: 600px;
+		  flex-wrap: wrap;
+		  align-content: flex-end;
+		}
+
+	</pre>
+
+
+	<h1>Perfect Centering</h1>
+	<p><b>SOLUTION:</b> set BOTH, the <span>justify-content</span> and <span>align-items</span> properties to "CENTER", and FLEX ITEM will e perfectly cenmtered:</p>
+
+	<div class="perfect-centering">
+		<div></div>
+	</div>
+
+<hr>
+
+	<h1>CSS Flex Items</h1>
+	<h2>Child Elements (Items)</h2>
+	<p>The direct child elements of a flex container automatically becomes flexible (flex) items.</p>
+
+	<h3>The flex item properties are:</h3>
+	<ul>
+		<li>order</li>
+		<li>flex-grow</li>
+		<li>flex-shrink</li>
+		<li>flex-basis</li>
+		<li>flex</li>
+		<li>align-self</li>
+	</ul>
+	<pre>
+		The order Property
+		The order property specifies the order of the flex items.
+
+		4 2 1 3 
+		The first flex item in the code does not have to appear as the first item in the layout.
+		The order value must be a number, default value is 0.
+		The order property can change the order of the flex items:
+
+		< div class="flex-container">
+		  < div style="order: 3">1< /div>
+		  < div style="order: 2">2< /div>
+		  < div style="order: 4">3< /div>
+		  < div style="order: 1">4< /div>
+		< /div>
+		--------------------------------------
+		
+		The flex-grow Property
+		The flex-grow property specifies how much a flex item will grow relative to the rest of the flex items.
+
+		1 2 3
+		The value must be a number, default value is 0.
+		Make the third flex item grow eight times faster than the other flex items:
+
+		< div class="flex-container">
+		  < div style="flex-grow: 1">1< /div>
+		  < div style="flex-grow: 1">2< /div>
+		  < div style="flex-grow: 8">3< /div>
+		< /div>
+		--------------------------------------
+
+		The flex-shrink Property
+		The flex-shrink property specifies how much a flex item will shrink relative to the rest of the flex items.
+
+		1 2 3 4 5 6 7 8 9 10
+		The value must be a number, default value is 1.
+		Do not let the third flex item shrink as much as the other flex items:
+
+		< div class="flex-container">
+		  < div>1< /div>
+		  < div>2< /div>
+		  <mark>< div style="flex-shrink: 0">3< /div></mark>
+		  < div>4< /div>
+		  < div>5< /div>
+		  < div>6< /div>
+		  < div>7< /div>
+		  < div>8< /div>
+		  < div>9< /div>
+		  < div>10< /div>
+		< /div>
+	</pre>
+
+	<h2>The flex-basis Property</h2>
+	<p>the <span>flex-basis</span> property specifies the <u>initial length</u> of a flex item:</p>
+	<div class="flex-basis_A">
+		<div>1</div>
+		<div>2</div>
+		<div style="flex-basis:200px">3</div>
+		<div>4</div>
+	</div>
+
+	<h2>The "flex" Property</h2>
+	<p>The <span>flex</span> property is a SHORTHAND property for the <span>flex-grow, flex-shrink</span> and <span>flex-basis</span> porperties.</p>
+	<div class="flex-property_A">
+		<div>1</div>
+		<div>2</div>
+		<div style="flex: 0 0 200px">3</div>
+		<div>4</div>
+	</div>
+
+		<pre>
+		Make the third flex item not growable (0), not shrinkable (0), and with an initial length of 200 pixels:
+		< div class="flex-container">
+		  < div>1< /div>
+		  < div>2< /div>
+		  <mark>< div style="flex: 0 0 200px">3< /div></mark>
+		  < div>4< /div>
+		< /div>
+	</pre>
+
+	<h2>The "align-self" Property</h2>
+	<p>The <span>align-self</span> property specifies the alignment for the SELECTED ITEM inside the flexible container.<br>
+		The <span>aling-self</span> property OVERRIDES the default alignment set by the container's <span>align-items</span> property</p>
+	<div class="align-self_A">
+		<div>1</div>
+		<div>2</div>
+		<div style="align-self:center">3</div>
+		<div>4</div>
+	</div>
+
+	<pre>
+		Align the second flex item at the top of the container, and the third flex item at the bottom of the container:
+
+		< div class="flex-container">
+		  < div>1< /div>
+		  < div style="align-self: flex-start">2< /div>
+		  < div style="align-self: flex-end">3< /div>
+		  < div>4< /div>
+		< /div>
+		
+			2		4	
+		1 	3
+
+	</pre>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSS  Flex-Responsive</title>
+	<link rel="stylesheet" type="text/css" href="Counter-Reset.css">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		.flex-container {
+			display: flex;
+			flex-direction: row;
+			font-size: 30px;
+			text-align: center;
+		}
+
+		.flex-item-left {
+			background-color: #f1f1f1;
+			padding: 10px;
+			flex: 50%;
+		}
+
+		.flex-item-right {
+			background-color: dodgerblue;
+			padding: 10px;
+			flex: 50%;
+		}
+
+		/*Responsive layout - makes one column layout instead of two-column layout*/
+		@media (max-width: 800px){
+			.flex-container {
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1>CSS Flex Responsive</h1>
+	<h2>Reponsive Flexbox</h2>
+	<p>...you can create a TWO-COLUMN layout for most screen sizes, and one-column layout for small screen sizes (such as phones and tabletes).<br>
+	You can change the <span>flex-direction</span> from <span>row</span> to <span>column</span> at a specific BREAKPOINT (800px in the example below):</p>
+
+	<div class="flex-container">
+		<div class="flex-item-left">1</div>
+		<div class="flex-item-right">2</div>
+	</div>
+<hr>
+
+	<p>Another way to change the percentage of the <span>flex</span> property pf the flex items to create different layouts for different screen sizes. we have to include <span>flex-wrap: wrap;</span> on the flex container for this example:</p>
+	<pre>
+		* {
+		  box-sizing: border-box;
+		}
+
+		.flex-container {
+		  display: flex;
+		  <mark>flex-wrap: wrap;</mark>
+		  font-size: 30px;
+		  text-align: center;
+		}
+
+		.flex-item-left {
+		  background-color: #f1f1f1;
+		  padding: 10px;
+		  flex: 50%;
+		}
+
+		.flex-item-right {
+		  background-color: dodgerblue;
+		  padding: 10px;
+		  flex: 50%;
+		}
+
+		/* Responsive layout - makes a one column-layout instead of a two-column layout */
+		@media (max-width: 800px) {
+		  .flex-item-right, .flex-item-left {
+		    <mark>flex: 100%;</mark>
+		  }
+		}
+
+		< div class="flex-container">
+	  < div class="flex-item-left">1< /div>
+	  < div class="flex-item-right">2< /div>
+		< /div
+	</pre>
+</body>
+</html>
